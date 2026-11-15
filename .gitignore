@@ -1,0 +1,17 @@
+# Local data and environments
+archive/
+data/raw/
+.venv/
+
+# Python and tooling caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+
+# OS / editor metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

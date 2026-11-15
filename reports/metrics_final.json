@@ -1,0 +1,102 @@
+{
+  "splits": {
+    "train": {
+      "n": 13750,
+      "base_rate": 0.24981818181818183
+    },
+    "val_2025_h1": {
+      "n": 4315,
+      "base_rate": 0.43638470451911937
+    },
+    "test_2025_h2": {
+      "n": 4307,
+      "base_rate": 0.13489667982354306
+    }
+  },
+  "threshold_selection": {
+    "rule": "F1-maximizing threshold selected on val 2025-H1 predictions only; applied unchanged to test 2025-H2",
+    "per_model": {
+      "persistence": 1.0,
+      "logistic": 0.07708083508350834,
+      "lightgbm_raw": 0.44174124132672526,
+      "lightgbm_calibrated": 0.3333333333333333
+    }
+  },
+  "val_2025_h1": {
+    "n": 4315,
+    "base_rate": 0.43638470451911937,
+    "persistence": {
+      "roc_auc": 0.669229042509177,
+      "pr_auc": 0.5570705561694833,
+      "f1@best-threshold-on-val": 0.6278265496142591,
+      "brier": 0.3255759832441238,
+      "ece": 0.3255759832441238
+    },
+    "logistic": {
+      "roc_auc": 0.5914975490538614,
+      "pr_auc": 0.5708917873008386,
+      "f1@best-threshold-on-val": 0.6097402597402597,
+      "brier": 0.2624743156144163,
+      "ece": 0.15646709154886168
+    },
+    "lightgbm_raw": {
+      "roc_auc": 0.6952764695195237,
+      "pr_auc": 0.6451956432323062,
+      "f1@best-threshold-on-val": 0.6425412143144351,
+      "brier": 0.23267697772944387,
+      "ece": 0.11910893085091287
+    },
+    "lightgbm_calibrated": {
+      "roc_auc": 0.6995877894666965,
+      "pr_auc": 0.6376801468964771,
+      "f1@best-threshold-on-val": 0.6425412143144351,
+      "brier": 0.21420480556047017,
+      "ece": 6.555847663371724e-17
+    }
+  },
+  "test_2025_h2": {
+    "n": 4307,
+    "base_rate": 0.13489667982354306,
+    "persistence": {
+      "roc_auc": 0.70504680424817,
+      "pr_auc": 0.3114880043996988,
+      "f1@best-threshold-on-val": 0.49177489177489175,
+      "brier": 0.13763188745603752,
+      "ece": 0.13763188745603752
+    },
+    "logistic": {
+      "roc_auc": 0.7291872805230584,
+      "pr_auc": 0.3317841318249295,
+      "f1@best-threshold-on-val": 0.24285714285714285,
+      "brier": 0.17438715412617345,
+      "ece": 0.2443626012506034
+    },
+    "lightgbm_raw": {
+      "roc_auc": 0.7469350602317253,
+      "pr_auc": 0.38578360132555867,
+      "f1@best-threshold-on-val": 0.37512537612838515,
+      "brier": 0.17024940969834546,
+      "ece": 0.22956390724572456
+    },
+    "lightgbm_calibrated": {
+      "roc_auc": 0.7439079991463439,
+      "pr_auc": 0.37000773585568925,
+      "f1@best-threshold-on-val": 0.37512537612838515,
+      "brier": 0.13183368241536525,
+      "ece": 0.1634480015135327
+    }
+  },
+  "notes": [
+    "Base rates differ sharply across splits (train 0.2498 / val 0.4364 / test 0.1349): PR-AUC must not be compared across splits as if base rates matched.",
+    "f1@best-threshold-on-val: threshold maximizing F1 on val 2025-H1 predictions only, applied unchanged to test; test labels never influence threshold selection.",
+    "val_2025_h1 lightgbm_calibrated ECE is in-sample (the isotonic calibrator was fit on val predictions) — not calibration quality; the test 2025-H2 ECE is the honest number."
+  ],
+  "sources": {
+    "data": "data/processed/port_hours.parquet",
+    "task4_metrics_json": "reports/metrics.json",
+    "lightgbm": "models/lightgbm.txt",
+    "logistic": "models/logistic.pkl",
+    "calibrator": "models/calibrator.pkl",
+    "figure": "reports/figures/comparison_table.png"
+  }
+}

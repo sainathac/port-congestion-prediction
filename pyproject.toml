@@ -1,0 +1,21 @@
+[project]
+name = "aiqon-congestion"
+version = "0.1.0"
+description = "6-hour-ahead port congestion forecast"
+requires-python = ">=3.13"
+dependencies = [
+    "pandas",
+    "pyarrow",
+    "scikit-learn",
+    "lightgbm",
+    "joblib",
+    "optuna",
+    "shap",
+    "matplotlib",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "ruff",
+]
